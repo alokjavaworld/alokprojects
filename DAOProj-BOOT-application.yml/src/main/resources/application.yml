@@ -1,0 +1,30 @@
+per:
+     info:
+          pno: 101
+          pname: alok
+
+          marks:
+               - 60
+               - 79
+               - 80
+          marsk1: 
+            - 81
+            - 82
+          marks2:
+               - 83
+               - 84
+          marks3:
+               -  85
+               -  86
+          skill:
+                  job: programmer
+                  backend: java
+          job: 
+                 job: dev
+                 loc: patna
+                 company: hcl        
+                       
+com:          
+          padd: ranchi
+                
+               
