@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- confg target  class -->
+	<bean id="bankService" class="com.nt.service.BankService" />
+
+	<!-- confgs advice class -->
+	<bean id="pmAspect" class="com.nt.aspect.PerformationMonitoring" />
+	
+<!-- 	confg loggin aspect -->
+    <bean id="loggin" class="com.nt.aspect.LoginAdvice"/>
+    
+<!--     confg caching acpect -->
+
+<bean id="cachingaspect" class="com.nt.aspect.AspeChaching"/>
+
+
+<!-- enable aop -->
+<aop:config  proxy-target-class="false">
+<!-- point cut expession -->
+   <aop:pointcut expression="execution (float  com.nt.service.IBankService.*(..))"  id="ptc"/>
+   <aop:pointcut expression="execution (float  com.nt.service.IBankService.calculateCompoundIntrest(..))"  id="ptc1"/>
+  
+   <aop:aspect ref="cachingaspect" order="1">
+      <aop:around method="caching" pointcut-ref="ptc"/>
+   </aop:aspect>
+<!--    spring bean as aspect aop  -->
+  <aop:aspect ref="pmAspect"> 
+     <aop:around method="monitor" pointcut-ref="ptc1"/>
+  </aop:aspect>
+  <aop:aspect ref="loggin" order="4">
+   <aop:around method="login" pointcut-ref="ptc"/>
+   </aop:aspect>
+ </aop:config>
+</beans>
