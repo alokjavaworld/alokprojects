@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+
+	<!-- config service class -->
+	<bean id="shopping" class="com.nt.service.ShoppingStore" />
+
+<!-- 	config advice class -->
+<bean id="advice" class="com.nt.advice.ThrowAdvce"/>
+
+<!-- enable aop -->
+<aop:config>
+    <aop:pointcut expression="execution(float com.nt.service.ShoppingStore.generateBill(..))" id="ptc"/>
+    
+    <aop:aspect ref="advice">
+     <aop:after-throwing method="exceptionLogger"  throwing="ex"  pointcut-ref="ptc"/>
+    </aop:aspect>
+
+</aop:config>
+
+</beans>
