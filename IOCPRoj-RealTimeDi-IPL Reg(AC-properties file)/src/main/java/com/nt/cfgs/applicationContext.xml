@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- datasourse -->
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"  value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.pass}"></property>
+	</bean>
+
+	<!-- dao -->
+	<bean id="dao" class="com.nt.dao.PlayerRegistrationImpl">
+		<constructor-arg ref="ds"></constructor-arg>
+	</bean>
+
+
+
+	<!-- controller -->
+	<bean id="controller" class="com.nt.controller.MainController">
+         <!-- inner bean -->
+		<constructor-arg>
+			<bean class="com.nt.service.PlayerRegistrationServiceImpl">
+				<constructor-arg ref="dao" />
+			</bean>
+		</constructor-arg>
+</bean>
+
+<!-- propeties -->
+<!--    <bean  id = "pf"  class = "org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!--    <property name="location" value="com/nt/commons/jdbcprop/jdbc.properties"/>  -->
+<!--     </bean> -->
+<context:property-placeholder location="com/nt/commons/jdbcprop/jdbc.properties"/>
+
+	
+
+</beans>
