@@ -40,6 +40,14 @@
  <h1 align="center"><a  href="welcome"><img alt="" src="images/home1.png"width="110" height="100"></a>
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a  href="addStudent"><img alt="" src="images/add1.png"width="100" height="100"></a>
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a  href="studentinfo"><img alt="" src="images/ref.png"width="110" height="100"></a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class=" text-danger text-center" href="JavaScript:doPrint()"><img alt="PRINT" src="images/print.png" width="100" height="100"></a></h1>
+ 
+
+ <script language="JavaScript">
+      function doPrint(){
+    	  frames.focus();
+    	  frames.print();
+      }
+ </script>
 
 
